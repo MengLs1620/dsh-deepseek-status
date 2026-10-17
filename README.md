@@ -1,5 +1,8 @@
 # dsh-deepseek-status
 
+> **本仓库是维护 fork**：`main` 已包含 DSH 0.2 兼容修复（插件 0.1.5，设置界面已恢复），可直接安装使用。
+> 上游修复请求见 [KekuKase/dsh-deepseek-status#1](https://github.com/KekuKase/dsh-deepseek-status/pull/1)，作者暂未回复；上游 `main` 目前仍是 0.1.3（在 DSH 0.2 上设置界面不可见）。
+
 A DeepSeek Harness (DSH) plugin that shows the **live DeepSeek official service status** (status.deepseek.com) in the Web UI session header — overall status, per-component statuses, active/recent incidents, and uptime percentages.
 
 DeepSeek Harness 插件：在 Web UI 会话头部实时显示 **DeepSeek 官方服务状态**（status.deepseek.com 同源数据）。
@@ -17,7 +20,7 @@ DeepSeek Harness 插件：在 Web UI 会话头部实时显示 **DeepSeek 官方�
 | 0.1.4 | 0.2.x | 移除 DSH 0.2 已删除的设置接缝（`installSettingsSection` / `settings.installSection` / `settings/updated`），配置改由 profile patch 中该行的 `config` 提供。**注意：0.1.4 起设置界面不可见，0.1.5 才把它恢复。** |
 | 0.1.2 / 0.1.3 | 0.1.x | 使用旧设置接口（`installSettingsSection` / `settings.installSection`），支持在设置里改轮询间隔并热更新。 |
 
-**0.1.5 实测环境**：Windows + DSH **0.2.0-rc.2**（`@deepseek-ai/dsh` 0.2.0-rc.2、`@deepseek-ai/schemastery` 3.18.4）；`npm test` **17 项通过**。
+**0.1.5 实测环境**：Windows + DSH **0.2.0-rc.2 / 0.2.1-rc.2**（`@deepseek-ai/dsh` 0.2.0-rc.2 与 0.2.1-rc.2，`@deepseek-ai/schemastery` 3.18.4 / 3.18.5）；`npm test` **17 项通过**。0.2.1-rc.2 上另做端到端复验（2026-10-17）：设置界面三个字段正常、保存后无需重启生效、宿主抓取按 120 秒推进。
 
 - 配置变化后始终只保留**一个**轮询定时器；
 - 上游不可用时，面板保留最后一次成功快照并同时提示抓取失败，绝不显示假「正常」。
