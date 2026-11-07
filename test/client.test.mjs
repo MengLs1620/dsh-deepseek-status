@@ -152,9 +152,9 @@ test('the card registers under the exact keys the Plugins page looks up', async 
   out.plugin.apply(ctx);
 
   const keys = out.registrations.map((r) => `${r.slot.name}:${r.slot.key ?? r.slot.id}`);
-  assert.ok(keys.includes('plugins.bundle.config:dsh-deepseek-status'),
+  assert.ok(keys.includes('plugins.bundle.config:@mengls1620/dsh-deepseek-status'),
     'the package page looks up plugins.bundle.config by pkg.name; saw ' + JSON.stringify(keys));
-  assert.ok(keys.includes('plugins.row.config:dsh-deepseek-status#deepseek-status'),
+  assert.ok(keys.includes('plugins.row.config:@mengls1620/dsh-deepseek-status#deepseek-status'),
     'the row page looks up plugins.row.config by `${pkg.name}#${rowId}`; saw ' + JSON.stringify(keys));
   assert.ok(!out.registrations.some((r) => r.slot.name === 'plugins.item'),
     'plugins.item is a list slot keyed by id, not a configuration surface');

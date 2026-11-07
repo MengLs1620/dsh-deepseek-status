@@ -1,9 +1,9 @@
-# dsh-deepseek-status bundle patch: registers the plugin row in the host plane.
+# @mengls1620/dsh-deepseek-status bundle patch: registers the plugin row in the host plane.
 # Applied when a profile lists this bundle. Users can override this row's
 # config by id from their own profile cordis.patch.yml (or settings.yaml).
 - insert:
     - id: deepseek-status
-      name: 'dsh-deepseek-status'
+      name: '@mengls1620/dsh-deepseek-status'
       config:
         statusUrl: 'https://status.deepseek.com/'
         pollIntervalMs: 60000

@@ -1,7 +1,7 @@
 {
-  "name": "dsh-deepseek-status",
+  "name": "@mengls1620/dsh-deepseek-status",
   "version": "0.1.6",
-  "description": "DeepSeek Harness plugin: live DeepSeek official service status (status.deepseek.com) in the sidebar — overall status, component statuses, incidents, and uptime.",
+  "description": "DeepSeek Harness plugin: live DeepSeek official service status (status.deepseek.com) in the sidebar — overall status, component statuses, incidents, and uptime. Fork of dsh-deepseek-status, maintained by MengLs1620 since 0.1.6.",
   "keywords": [
     "deepseek-harness",
     "dsh",
@@ -12,11 +12,21 @@
     "monitor"
   ],
   "license": "MIT",
+  "author": "MengLs1620",
+  "contributors": [
+    "KekuKase (original dsh-deepseek-status)"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KekuKase/dsh-deepseek-status.git"
+    "url": "git+https://github.com/MengLs1620/dsh-deepseek-status.git"
   },
-  "homepage": "https://github.com/KekuKase/dsh-deepseek-status#readme",
+  "homepage": "https://github.com/MengLs1620/dsh-deepseek-status#readme",
+  "bugs": {
+    "url": "https://github.com/MengLs1620/dsh-deepseek-status/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "lib/index.js",
   "files": [

@@ -2,6 +2,15 @@
 
 ## 0.1.6
 
+- Maintenance fork: this release is published by MengLs1620 as
+  `@mengls1620/dsh-deepseek-status`, maintained from 0.1.5 onward. The package
+  name, the browser module id, the host bundle name, the settings-card keys and
+  the row name all follow the new package name; behaviour is otherwise
+  unchanged. The upstream npm package `dsh-deepseek-status` (0.1.3) is
+  unmaintained and fails on DSH 0.2.x, so migrating users uninstall it first.
+- Publish setup: `publishConfig.access = public`; repository, homepage and bugs
+  point at the fork; the README documents the scoped install, the migration
+  step and the maintenance note.
 - Make the status panel opaque on DSH 0.2.2. The 2026-11-04 desktop theme ships `--dsw-specific-menu`
   as a 64%-opaque menu fill (`#303136a3` dark, `#fcfdfeb3` light) intended to sit under the official
   menu backdrop blur; the panel painted that token as its only background and applied no blur, so the
