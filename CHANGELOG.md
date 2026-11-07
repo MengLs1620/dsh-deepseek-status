@@ -10,7 +10,8 @@
 ## 0.1.6
 
 - Maintenance fork: this release is published by MengLs1620 as
-  `@mengls1620/dsh-deepseek-status`, maintained from 0.1.5 onward. The package
+  `@mengls1620/dsh-deepseek-status`, maintained by MengLs1620 since 0.1.4 and
+  published independently from 0.1.6 onward. The package
   name, the browser module id, the host bundle name, the settings-card keys and
   the row name all follow the new package name; behaviour is otherwise
   unchanged. The upstream npm package `dsh-deepseek-status` (0.1.3) is

@@ -5,9 +5,9 @@ A DeepSeek Harness (DSH) plugin that shows the **live DeepSeek official service 
 DeepSeek Harness 插件：在 Web UI 会话头部实时显示 **DeepSeek 官方服务状态**（status.deepseek.com 同源数据）。
 
 > **维护说明 / Maintenance**
-> - 本仓库是 [`KekuKase/dsh-deepseek-status`](https://github.com/KekuKase/dsh-deepseek-status) 的维护 fork。**从 0.1.5 之后（即 0.1.6 起）由 [MengLs1620](https://github.com/MengLs1620) 维护**：跟随 DSH 新版本适配、修复问题并更新 npm。
+> - 本仓库是 [`KekuKase/dsh-deepseek-status`](https://github.com/KekuKase/dsh-deepseek-status) 的维护 fork。**从 0.1.4 起由 [MengLs1620](https://github.com/MengLs1620) 接手代码维护**（跟随 DSH 新版本适配、修复问题）；**从 0.1.6 起以 `@mengls1620/dsh-deepseek-status` 独立发布并维护 npm 包**。
 > - npm 包名改为 **`@mengls1620/dsh-deepseek-status`**（首次发布于 0.1.6）。作者名下的旧包 `dsh-deepseek-status`（最新 0.1.3）**已不再维护**，在 DSH 0.2.x 上启动会报 `installSection is not a function`。
-> - This is a maintained fork. Starting with 0.1.6 (after upstream 0.1.5), it is maintained by MengLs1620 and published on npm as `@mengls1620/dsh-deepseek-status`. The original `dsh-deepseek-status` package (0.1.3) is unmaintained and fails on DSH 0.2.x.
+> - This is a maintained fork. MengLs1620 has maintained the code since 0.1.4 (DSH compatibility and bug fixes), and since 0.1.6 maintains and publishes it independently on npm as `@mengls1620/dsh-deepseek-status`. The original `dsh-deepseek-status` package (0.1.3) is unmaintained and fails on DSH 0.2.x.
 
 - 状态点 + 文字：绿=所有系统运行正常 / 蓝=维护中 / 黄=性能下降 / 橙=部分故障 / 红=严重故障 / 灰=状态未知
 - 点击展开面板：总体状态、最后更新时间、各组件状态、进行中的事件/维护、最近事件、各组件可用率(uptime%)
@@ -30,7 +30,7 @@ DeepSeek Harness 插件：在 Web UI 会话头部实时显示 **DeepSeek 官方�
 
 **0.1.7 与 0.1.6 代码完全相同**：仅版本号变化，0.1.6 的实测结论同样适用；本版用于验证 GitHub Actions trusted publishing 发布链路（打 Release 自动发 npm，不再使用 token）。
 
-**0.1.6 是维护 fork 的首个发布版**：代码与上游 0.1.5 + 面板不透明修复相同，只改了包名、浏览器模块 id、宿主行 `name` 和设置卡片 key；npm 包名为 `@mengls1620/dsh-deepseek-status`。
+**0.1.6 是维护 fork 的首个独立发布版**（以新包名发布到 npm）：代码与上游 0.1.5 + 面板不透明修复相同，只改了包名、浏览器模块 id、宿主行 `name` 和设置卡片 key；npm 包名为 `@mengls1620/dsh-deepseek-status`。
 
 - 配置变化后始终只保留**一个**轮询定时器；
 - 上游不可用时，面板保留最后一次成功快照并同时提示抓取失败，绝不显示假「正常」。
