@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.7
+
+- Maintenance release to validate the npm trusted-publishing pipeline. Code,
+  behaviour and configuration are identical to 0.1.6; only the version number
+  changes. Publishing is now performed by GitHub Actions on release through
+  npm trusted publishing (OIDC), without a long-lived npm token.
+
 ## 0.1.6
 
 - Maintenance fork: this release is published by MengLs1620 as
