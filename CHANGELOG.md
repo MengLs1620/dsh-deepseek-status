@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.8
+
+- Add the package icon: `package.json` now declares `"icon": "assets/icon-512.png"`
+  and the file is included in the published package, so DSH's installed-plugins
+  list shows the plugin's own artwork instead of the generic placeholder.
+- Docs: publish the corrected maintenance history (code maintained by MengLs1620
+  since 0.1.4; independently published on npm since 0.1.6). The 0.1.7 npm page
+  shipped the older wording; this release carries the correction to npm.
+- No behaviour or configuration change; code is identical to 0.1.7.
+
 ## 0.1.7
 
 - Maintenance release to validate the npm trusted-publishing pipeline. Code,

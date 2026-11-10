@@ -18,6 +18,7 @@ DeepSeek Harness 插件：在 Web UI 会话头部实时显示 **DeepSeek 官方�
 
 | 插件版本 | DSH | 说明 |
 |---|---|---|
+| **0.1.8** | **0.2.x** | **图标元数据更新**：`package.json` 增加 `icon`（DSH 已安装插件列表会显示插件图标）；同时把维护起始措辞修正带进 npm（0.1.4 起维护代码 / 0.1.6 起独立发 npm）。代码与 0.1.7 相同。 |
 | **0.1.7** | **0.2.x** | **发布链路验证版**：代码 / 行为 / 配置与 0.1.6 完全相同，仅版本号 +1；用于验证 npm trusted publishing（GitHub Release → GitHub Actions 自动发布，无需 token）。 |
 | **0.1.6** | **0.2.x** | **状态面板改为不透明**：DSH 0.2.2 的菜单色 `--dsw-specific-menu` 只有 64% 不透明，之前会透出页面文字；现在把同一颜色叠在不透明底色上，观感不变、不再透字。无行为/配置变化。 |
 | **0.1.5** | **0.2.x** | **恢复设置界面**（两段式：宿主侧字段声明 `.volatile()`，浏览器半区注册配置卡片），保存后**无需重启**即生效。 |
@@ -29,6 +30,8 @@ DeepSeek Harness 插件：在 Web UI 会话头部实时显示 **DeepSeek 官方�
 **0.1.6 实测环境**：Windows + DSH **0.2.2-rc.1**（`@deepseek-ai/dsh` 0.2.2-rc.1、`@deepseek-ai/schemastery` 3.19.0）；重启后面板不透明、挂件与 120 秒轮询正常；`npm test` **17 项通过**。
 
 **0.1.7 与 0.1.6 代码完全相同**：仅版本号变化，0.1.6 的实测结论同样适用；本版用于验证 GitHub Actions trusted publishing 发布链路（打 Release 自动发 npm，不再使用 token）。
+
+**0.1.8 只改元数据与文档**：新增 manifest `icon`（DSH 已安装插件列表会显示插件图标，而不是默认占位图），并带上维护起始说明的更正（0.1.4 起维护代码 / 0.1.6 起独立发 npm）；代码与 0.1.7 完全相同。
 
 **0.1.6 是维护 fork 的首个独立发布版**（以新包名发布到 npm）：代码与上游 0.1.5 + 面板不透明修复相同，只改了包名、浏览器模块 id、宿主行 `name` 和设置卡片 key；npm 包名为 `@mengls1620/dsh-deepseek-status`。
 
@@ -50,7 +53,7 @@ dsh plugin --profile web add @mengls1620/dsh-deepseek-status
 
 # 或从本地 checkout / tarball
 dsh plugin --profile web add ./dsh-deepseek-status
-dsh plugin --profile web add ./mengls1620-dsh-deepseek-status-0.1.7.tgz
+dsh plugin --profile web add ./mengls1620-dsh-deepseek-status-0.1.8.tgz
 ```
 
 > ⚠️ **从旧版迁移**：如果你之前装过旧的 `dsh-deepseek-status`（作者 npm 名下的 0.1.3，或直接装的 tarball），**先卸载旧包再装新包**：`dsh plugin --profile web remove dsh-deepseek-status`。两个包会注册同一个路由 `/deepseek-status/current` 和同一个行 id，不能同时存在，设置项也会按新包名重置一次。
@@ -66,7 +69,7 @@ dsh plugin --profile web add ./mengls1620-dsh-deepseek-status-0.1.7.tgz
 git clone https://github.com/MengLs1620/dsh-deepseek-status.git
 cd dsh-deepseek-status
 npm pack
-dsh plugin --profile web add ./mengls1620-dsh-deepseek-status-0.1.7.tgz
+dsh plugin --profile web add ./mengls1620-dsh-deepseek-status-0.1.8.tgz
 ```
 
 `npm test` 运行回归测试；`npm pack` 会先执行语法检查和测试。
