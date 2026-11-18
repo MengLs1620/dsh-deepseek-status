@@ -135,11 +135,68 @@ test('without the UI primitives the card is skipped, never fatal', async () => {
   assert.ok(out.warnings.some((w) => w.includes('primitives unavailable')), 'the skip is reported: ' + JSON.stringify(out.warnings));
 });
 
-test('a missing settings service cannot take the widget down', async () => {
+test('a missing settings service only skips the card', async () => {
   const { ctx, out } = await boot({ primitives: stubPrimitives(), configForms: null });
   out.plugin.apply(ctx);
   assert.ok(out.registrations.some((r) => r.slot.id === 'deepseek-status'), 'the widget must still register');
-  assert.ok(out.warnings.some((w) => w.includes('settings card failed')), 'the failure is reported: ' + JSON.stringify(out.warnings));
+  assert.ok(!out.registrations.some((r) => r.slot.name.startsWith('plugins.')), 'no settings card without configForms');
+});
+
+test('configForms is optional and is not injected', async () => {
+  const { out } = await boot();
+  // The array comes from another vm realm, so compare element-wise rather
+  // than with deepEqual (different Array prototypes).
+  assert.equal(out.plugin.inject.length, 2);
+  assert.equal(out.plugin.inject[0], 'slots');
+  assert.equal(out.plugin.inject[1], 'locale');
+  assert.ok(!out.plugin.inject.includes('configForms'),
+    'configForms must not be a required inject service, or the whole browser half stays pending without it');
+});
+
+test('an uninjected configForms service is read through ctx.reflect', async () => {
+  // Real Cordis throws when a fiber reads a service it did not inject, so the
+  // optional settings service must be fetched from the reflection store. A
+  // direct `ctx.configForms` read here is what blanked the widget in 0.1.9.
+  const { ctx, out } = await boot({ primitives: stubPrimitives(), configForms: null });
+  let directReads = 0;
+  Object.defineProperty(ctx, 'configForms', {
+    configurable: true,
+    get() {
+      directReads++;
+      throw new Error('cannot get property "configForms" without inject');
+    },
+  });
+  const service = {
+    get: () => ({
+      getSnapshot: () => ({ revision: 0, value: {}, user: {}, base: {}, schema: { type: 'object', dict: {} }, writable: true, applies: 'live' }),
+      subscribe: () => () => {},
+      edit: async () => {},
+      reset: async () => {},
+      replace: async () => {},
+    }),
+    whileServed(namespaces, register) {
+      const off = register(new Set(namespaces));
+      return () => { if (typeof off === 'function') off(); };
+    },
+  };
+  ctx.reflect = { get(name) { return name === 'configForms' ? service : undefined; } };
+
+  out.plugin.apply(ctx);
+
+  assert.equal(directReads, 0, 'the uninjected service must not be read directly');
+  const names = out.registrations.map((r) => r.slot.name);
+  assert.ok(names.includes('conversation.session.header.utilities'), 'the status widget must still register');
+  assert.ok(names.includes('plugins.bundle.config'), 'the settings card registers through the reflection store');
+});
+
+test('the panel link follows the host-reported status page', async () => {
+  const { out } = await boot();
+  const href = out.plugin.__test.pageHref;
+  assert.equal(href({ statusUrl: 'https://status.example.com/' }), 'https://status.example.com/');
+  assert.equal(href({ statusUrl: 'http://status.example.com/' }), 'http://status.example.com/');
+  assert.equal(href({ statusUrl: 'javascript:alert(1)' }), 'https://status.deepseek.com/');
+  assert.equal(href({ statusUrl: 'file:///etc/passwd' }), 'https://status.deepseek.com/');
+  assert.equal(href(null), 'https://status.deepseek.com/');
 });
 
 test('the card registers under the exact keys the Plugins page looks up', async () => {

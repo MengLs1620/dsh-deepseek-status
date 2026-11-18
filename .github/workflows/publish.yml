@@ -20,5 +20,16 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: npm with trusted publishing support
         run: npm install -g npm@latest
+      # The tests import @deepseek-ai/schemastery, which is a peer at runtime
+      # and a devDependency only for this gate. No lockfile is committed on
+      # purpose (see README): the devDependency is pinned exactly below.
+      - name: Install test dependencies
+        run: npm install --no-package-lock --no-audit --no-fund
+      - name: The test dependency resolves
+        run: node -e "import('@deepseek-ai/schemastery').then(() => console.log('schemastery resolves'))"
+      - name: Check (syntax + tests)
+        run: npm run check
       - name: Publish
-        run: npm publish --provenance --access public
+        # The gate above already ran prepack (syntax + tests); running scripts
+        # again during publish would only repeat it, so they are skipped here.
+        run: npm publish --provenance --access public --ignore-scripts
